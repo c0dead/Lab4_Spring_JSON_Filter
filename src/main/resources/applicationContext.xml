@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- конфигурационный файл Spring'а -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Spring прочитает этот файл и создаст указанные бины -->
+    <!-- id это уникальный идентификатор бина; class содержит путь до класса, бин/объект которого мы хотим создать -->
+    <!-- class это класс, который будет реализовывать бин -->
+    <!-- Потом Spring прочитает конфигурационный файл applicationContext.xml, создаст указанный бин и положит его в свой
+    applicationContext. Затем мы извлечём этот бин из applicationContext'а -->
+
+    <!-- Включаем сканирование компонентов в Spring:
+    Spring сканирует все классы, находит классы со специальными аннотациями и автоматически создаёт бины (зависимости)
+    из этих классов.
+    Аннотацией @Component помечаем класс (НЕ интерфейс), если хотим, чтобы Spring создал бин из этого класса.
+
+    Аннотация @Autowired позволяет не внедрять зависимость вручную: Spring сам ищет подходящий бин и автоматически внедряет его
+    (т. е. не нужно использовать конструктор или фабричный метод с передачей аргумента).
+
+    Сначала Spring сканирует все классы с аннотацией @Component и создаёт бины для этих классов. Потом Spring сканирует все созданные
+    бины и проверяет, подходит ли хотя бы один бин в качестве зависимости там, где мы указали аннотацию @Autowired.
+    Если подходит только один бин, то всё нормально, а если 0, 2 или больше, то происходит падение приложения.
+    В первую очередь смотрит на класс (class), а потом на имя (id) бина.
+
+    Аннотация @Qualifier("id") указывает, что в первую очередь нужно смотреть на id.
+
+    В base-package указываем тот пакет, в котором Spring будет сканировать классы на наличие аннотации @Component -->
+    <!-- <context:component-scan base-package="ru.stud.person"/> -->
+
+    <!-- Когда Spring ищет по пакетам, он ориентируется на имя компонента @Component.
+     @Bean это обычно порождающий метод, а @Component это класс, который нужно породить -->
+</beans>
